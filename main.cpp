@@ -3,6 +3,7 @@
 #include "rtos.h"
 #include "uLCD_4DGL.h"
 #include <stdio.h> 
+#include "icons.h"
 
 uLCD_4DGL uLCD(p9,p10,p11); // serial tx, serial rx, reset pin;
 Serial  pi(USBTX, USBRX);
@@ -21,6 +22,7 @@ volatile int i = 0;
 volatile float volume;// = 1.0f;
 volatile bool alarm = false;
 int       len = 0;
+
  
 void thread5(void const* args)
 {
@@ -36,7 +38,6 @@ void thread5(void const* args)
             pi.gets(buffer, sizeof(buffer));
             moist_data = atoi(buffer);
             led4 = 0;
-
         } else {
             led4 = 1;
         }
@@ -97,20 +98,23 @@ void thread4(void const *args) {
     while(true) {
         uLCD_mutex.lock();
         if (volume > 0.66) {
-            uLCD.filled_rectangle(125, 5, 127, 11, WHITE);
+            uLCD.filled_rectangle(120, 14, 122, 5, WHITE);
         } else {
-            uLCD.filled_rectangle(125, 5, 127, 11, BLACK);
+            uLCD.filled_rectangle(120, 14, 122, 5, BLACK);
         }
         if (volume > 0.33) {
-            uLCD.filled_rectangle(120, 7, 122, 11, WHITE);
+            uLCD.filled_rectangle(115, 14, 117, 8, WHITE);
         } else {
-            uLCD.filled_rectangle(120, 7, 122, 11, BLACK);
+            uLCD.filled_rectangle(115, 14, 117, 8, BLACK);
         }
         
         if (volume > 0.05) {
-            uLCD.filled_rectangle(115, 9, 117, 11, WHITE);
+            uLCD.filled_rectangle(110, 14, 112, 11, WHITE);
+            uLCD.BLIT(85,0,18,18, volume_on);
+
         } else {
-            uLCD.filled_rectangle(115, 9, 117, 11, BLACK);
+            uLCD.filled_rectangle(110, 14, 112, 11, BLACK);
+            uLCD.BLIT(85,0,18,18, volume_off);
         }
 
         uLCD_mutex.unlock();
@@ -125,9 +129,13 @@ void thread4(void const *args) {
 int main()
 {
     pi.baud(9600);
+    uLCD.cls();
 
     speaker.period(1.0/150.0); // 500hz period
     volume = 0.0f;
+    uLCD.BLIT(40,30,16,16, water_drop);
+    uLCD.BLIT(80,28,18,18, light_bulb);
+
 
     Thread t1(thread1);
     Thread t2(thread2);
@@ -135,7 +143,6 @@ int main()
     Thread t4(thread4);
     Thread t5(thread5);
 
-    uLCD.cls();
 
     while (true) {
         volume = pot;
