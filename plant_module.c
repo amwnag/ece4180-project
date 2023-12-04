@@ -16,7 +16,7 @@
 #include <fcntl.h>
 
 #define SERVER_ADDRESS "B8:27:EB:12:D7:91"  // Replace with the Bluetooth address of your target device
-#define LED 17 //LED pin is GPIO_17
+#define LED 21 //LED pin is GPIO_21
 /*
 Plant module behavior
 1. Connect to desk via bluetooth on boot
@@ -125,7 +125,11 @@ int main() {
             if (status == -1) {
                 perror("Data transmission failed");
             } else {
-                printf("Data sent successfully: %s\n", data);
+                int raw_adc = (data[0] * 256 + data[1]);
+                if (raw_adc > 32767) {
+                    raw_adc -= 65535; // value range from 5000 to 15000
+                }
+                printf("Raw ADC data sent successfully: %d \n", raw_adc);
                 
             }   
             
