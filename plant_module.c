@@ -102,6 +102,8 @@ int main() {
         exit(EXIT_FAILURE);
     }
     
+    printf("???");
+    
     
     // WE ARE NOW CONNECTED!
     gpioWrite  (LED, PI_ON);  // LED on
