@@ -27,23 +27,39 @@ int       len = 0;
 void thread5(void const* args)
 {
     while(true) {
-        char temp = 0;
-        char buffer[256];
+        char buffer[2] = {0};
+        int raw_adc;
+
 
         uLCD_mutex.lock();
-        uLCD.locate(8, 1);
+        uLCD.locate(5, 14);
         uLCD.text_height(1);
         uLCD.text_width(1);
         if (pi.readable()) {
-            pi.gets(buffer, sizeof(buffer));
-            moist_data = atoi(buffer);
+            buffer[0] = pi.getc();
+            buffer[1] = pi.getc();
+
+            raw_adc = (buffer[0] * 256 + buffer[1]);
+            if (raw_adc > 32767) {
+                raw_adc -= 65535; // value range from 5000 to 15000
+            }
+
+            if (raw_adc < 5000) {
+                moist_data = 0;
+            } else if (raw_adc > 15000) {
+                moist_data = 100;
+            } else {
+                moist_data =(int)(double(raw_adc - 5000) / 100.0 + 0.5);
+            }
+
+            uLCD.printf("   %d   ", raw_adc);
             led4 = 0;
         } else {
             led4 = 1;
         }
 
         uLCD_mutex.unlock();
-        printf("Moisture data: %s\n", buffer);
+        //printf("Moisture data: %s\n", buffer);
         Thread::wait(100);
     }
     
