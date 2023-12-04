@@ -125,7 +125,7 @@ int main() {
             if (status == -1) {
                 perror("Data transmission failed");
             } else {
-                printf("Data sent successfully: %s\n", buffer);
+                printf("Data sent successfully: %s\n", data);
                 
             }   
             
