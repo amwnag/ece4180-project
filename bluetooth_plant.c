@@ -1,3 +1,5 @@
+// purpose: transmit analog sensor data to desk module
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
