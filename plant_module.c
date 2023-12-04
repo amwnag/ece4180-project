@@ -51,6 +51,7 @@ int main() {
     
     // gpio code, can opt to make LED blink
     gpioSetMode(LED, PI_OUTPUT); // set LED pin to output
+    gpioWrite  (LED, PI_OFF);  // LED off
     
     // bluetooth init
     struct sockaddr_rc addr = {0};
