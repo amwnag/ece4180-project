@@ -121,10 +121,10 @@ int main() {
 	
 	while (1) {
 	   if(read(file, data, 2) != 2) {
-		  printf("Error : Input/Output Error \n");
+		  printf("Error : Input/Output Error in ADC\n");
 	   } else {
             // Send data, in char array format
-            status = write(s, data, sizeof(data));
+            status = write(s, data, sizeof(data)); // write to bluetooth connection
             if (status == -1) {
                 perror("Data transmission failed");
             } else {
@@ -144,7 +144,8 @@ int main() {
 			 raw_adc -= 65535; // value range from 5000 to 15000
 		  }
             */
-	   }   
+	   }
+	   time_sleep(1);   
 	}
  
     // maybe put these things below into an interrupt
