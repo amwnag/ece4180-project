@@ -114,43 +114,33 @@ int main() {
 	char reg[1] = {0x00};
 	write(file, reg, 1);
 	char data[2]={0};
-	char buffer[10]={0}; // "0" to "100", uhhh check if this is a good number
-	// alternatively can send the smaller char array over bt then do the operations on desk pi
-	// probably preferable, as we are transmitting smaller sizes of data
-	// or send int raw_data encoded as char, convert back on desk pi
 	
-	if(read(file, data, 2) != 2)
-	{
-		printf("Error : Input/Output Error \n");
-	}
-	else 
-	{
-		// Convert the data
-		int raw_adc = (data[0] * 256 + data[1]);
-		if (raw_adc > 32767)
-		{
-			raw_adc -= 65535; // value range from 5000 to 15000
-		}
-
-		
-		// Output data to screen
-		// printf("Digital Value of Analog Input: %d \n", raw_adc);
-		
-        // message as char array
-        
-        sprintf(buffer, "%d\n", (raw_adc-5000)/100);
-        // Send data
-        status = write(s, buffer, sizeof(buffer));
-        if (status == -1) {
-            perror("Data transmission failed");
-        } else {
-            printf("Data sent successfully: %s\n", buffer);
+	
+	while (1) {
+	   if(read(file, data, 2) != 2) {
+		  printf("Error : Input/Output Error \n");
+	   } else {
+            // Send data, in char array format
+            status = write(s, data, sizeof(data));
+            if (status == -1) {
+                perror("Data transmission failed");
+            } else {
+                printf("Data sent successfully: %s\n", buffer);
+                
+            }   
             
-        }   
-	}   
-
+            /* conversion to be done on desk module
+            // Convert the data
+		  int raw_adc = (data[0] * 256 + data[1]);
+		  if (raw_adc > 32767)
+		  {
+			 raw_adc -= 65535; // value range from 5000 to 15000
+		  }
+            */
+	   }   
+	}
  
-    
+    // maybe put these things below into an interrupt
     close(s); // Close the socket
     gpioTerminate();
     
