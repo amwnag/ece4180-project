@@ -4,6 +4,7 @@
 #include "uLCD_4DGL.h"
 #include <stdio.h> 
 #include "icons.h"
+#include "Speaker.h"
 
 uLCD_4DGL uLCD(p9,p10,p11); // serial tx, serial rx, reset pin;
 Serial  pi(USBTX, USBRX);
@@ -19,11 +20,39 @@ Mutex uLCD_mutex;
 
 volatile int moist_data = 0;
 volatile int i = 0;
-volatile float volume;// = 1.0f;
+volatile float volume = 0.8;// = 1.0f;
+volatile float potValue;
+
 volatile bool alarm = false;
 int       len = 0;
 
- 
+void setVolume(float newVolume) {
+ volume = newVolume;
+}
+
+//draws frown line
+void generateFrown(int face_x, int face_y) {
+int frown_diagonal = 5;
+   int frown_offset_x = 16;
+   int frown_offset_y = 15;
+   int frown_line = 24;
+   for (int i = 0; i < frown_diagonal; ++i){
+       uLCD.pixel((face_x - frown_offset_x), (face_y + frown_offset_y), WHITE);
+       frown_offset_x--;
+       frown_offset_y--;
+   }   
+    for (int i = 0; i < frown_line; ++i){
+    uLCD.pixel((face_x - frown_offset_x), (face_y + frown_offset_y), WHITE);
+    frown_offset_x--;
+    }
+
+    for (int i = 0; i < frown_diagonal; ++i){
+       uLCD.pixel((face_x - frown_offset_x), (face_y + frown_offset_y), WHITE);
+       frown_offset_x--;
+       frown_offset_y++;
+    }
+}
+//receive and read moisture data
 void thread5(void const* args)
 {
     while(true) {
@@ -64,14 +93,14 @@ void thread5(void const* args)
     }
     
 }
-
+//Mbed LED control
 void thread1(void const *args) {
     while (true) {
         led1 = !led1;
         Thread::wait(1000);
     }
 }
-
+//display moisture status 
 void thread2(void const *args) {
     while (true) {
         uLCD_mutex.lock();
@@ -97,7 +126,7 @@ void thread2(void const *args) {
     }
 }
 
-
+//speaker control
 void thread3(void const *args) {
     while (true) {
         if (alarm) {
@@ -109,7 +138,7 @@ void thread3(void const *args) {
     }
 }
 
-
+//uLCD icon status 
 void thread4(void const *args) {
     while(true) {
         uLCD_mutex.lock();
@@ -137,8 +166,6 @@ void thread4(void const *args) {
             
         Thread::wait(100);
     }
-
-
 }
 
 
@@ -169,4 +196,18 @@ int main()
         }
         Thread::wait(500);
     }
+
+   //draws sad face
+    int face_rad = 40;
+    int face_x = 64;
+    int face_y = 64;
+    uLCD.BLIT(85,0,18,18, volume_on);
+    //uLCD.BLIT(64, 64, 64, 64, sad_face);
+   uLCD.circle(face_x, face_y, face_rad, WHITE);
+   uLCD.filled_circle((face_x - 19), 60, 8, WHITE);
+   uLCD.filled_circle((face_x + 19), 60, 8, WHITE);
+   uLCD.line((face_x - 30), 50, (face_x - 20), 40, WHITE);
+   uLCD.line((face_x + 30), 50, (face_x + 20), 40, WHITE);
+
+   generateFrown(face_x, face_y);
 }
