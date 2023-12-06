@@ -8,7 +8,7 @@
 
 uLCD_4DGL uLCD(p9,p10,p11); // serial tx, serial rx, reset pin;
 Serial  pi(USBTX, USBRX);
-PwmOut speaker(p21);
+Speaker mySpeaker(p21);
 AnalogIn pot(p20);
 
 DigitalOut led1(LED1);
@@ -130,9 +130,9 @@ void thread2(void const *args) {
 void thread3(void const *args) {
     while (true) {
         if (alarm) {
-            speaker = 0.5f * volume;
+            mySpeaker.PlayNote(969.0,0.5,volume);
         } else {
-            speaker = 0.0f;
+            mySpeaker = 0.0f;
         }
         Thread::wait(200);
     }
@@ -174,7 +174,7 @@ int main()
     pi.baud(9600);
     uLCD.cls();
 
-    speaker.period(1.0/150.0); // 500hz period
+    mySpeaker.period(1.0/150.0); // 500hz period
     volume = 0.0f;
     uLCD.BLIT(40,30,16,16, water_drop);
     uLCD.BLIT(80,28,18,18, light_bulb);
