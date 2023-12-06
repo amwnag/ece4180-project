@@ -1,1 +1,1 @@
-./plant_module.o
+sudo ./plant_module.o
