@@ -16,7 +16,7 @@
 #include <fcntl.h>
 
 #define SERVER_ADDRESS "B8:27:EB:12:D7:91"  // Replace with the Bluetooth address of your target device
-#define LED 21 //LED pin is GPIO_21
+#define LED 18 //LED pin is GPIO_21
 /*
 Plant module behavior
 1. Connect to desk via bluetooth on boot
@@ -51,7 +51,7 @@ int main() {
     
     // gpio code, can opt to make LED blink
     gpioSetMode(LED, PI_OUTPUT); // set LED pin to output
-    gpioWrite  (LED, PI_ON);  // LED pull up
+    gpioWrite  (LED, PI_OFF);  // LED pull down
     
     // bluetooth init
     struct sockaddr_rc addr = {0};
@@ -106,7 +106,7 @@ int main() {
     
     
     // WE ARE NOW CONNECTED!
-    gpioWrite  (LED, PI_OFF);  // LED on
+    gpioWrite  (LED, PI_ON);  // LED on
     
     // READ AND SEND UNTIL POWER OFF (or interrupt if desired)
     
