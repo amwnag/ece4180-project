@@ -64,9 +64,11 @@ Three microcontrollers were used along with peripheral hardware elements to impl
 3. With the mbed connected to the computer with Keil Studio opened via USB, build the project and download the build onto the mbed. 
 
 **Desk Pi**:
-1. Download `bluetooth_receive.c` and `startup.sh` from the desk_pi folder in the github repo.
-2. Compile the C file with the line `gcc bluetooth_receive.c -o bluetooth_receive.o -Wall -lbluetooth`
-3. If you would like the program to start at boot, do the following:
+1. Install the necessary bluetooth libraries by running `sudo apt update && sudo apt upgrade` and then `sudo apt install bluetooth pi-bluetooth bluez`. It might be helpful to install bluedot by running `sudo pip3 install bluedot`
+2. Follow the instructions in Pairing the Pis section below.
+3. Download `bluetooth_receive.c` and `startup.sh` from the desk_pi folder in the github repo.
+4. Compile the C file with the line `gcc bluetooth_receive.c -o bluetooth_receive.o -Wall -lbluetooth`
+5. If you would like the program to start at boot, do the following:
     1. In the terminal of the Desk Pi, enter the command `sudo nano /etc/rc.local`.
     2. Add the line `sudo sh /home/[user]/[location of files]/startup.h &` before `exit 0`.
 
@@ -75,5 +77,24 @@ Three microcontrollers were used along with peripheral hardware elements to impl
 2. Compile the C code using the command `gcc plant_module.c -o plant_module.o -Wall -lbluetooth -lpigpio`
 3. Once compiled to an executable, edit `/etc/rc.local` to include a command to run plant_module.o, making sure to use an absolute path (such as `/home/pichu/ece4180-project/plant_pi/plant_module.o`).
 
-
-
+**Pairing the Pis**
+1. Once both raspberry pis have bluetooth modules installed, run the following on one pi:
+```
+sudo bluetoothctl
+[bluetooth]# discoverable on
+[bluetooth]# pairable on
+[bluetooth]# agent on
+[bluetooth]# default-agent
+```
+2. And run the following on the other:
+```
+sudo bluetoothctl
+[bluetooth]# discoverable on
+[bluetooth]# pairable on
+[bluetooth]# agent on
+[bluetooth]# default-agent
+[bluetooth]# scan on
+```
+3. Look for the hostname of the former raspberry pi and then type in `[bluetooth]# pair XX:XX:XX:XX:XX:XX` where XX will be replaced with the MAC address of the former pi.
+4. Once the bluetooth connection is made, type in `trust XX:XX:XX:XX:XX:XX` where XX will be replaced with the MAC address of the former pi so it will always connect to this pi.
+5. Enter `exit` to leave the bluetoothctl module on both pis.
