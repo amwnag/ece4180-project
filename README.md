@@ -47,12 +47,12 @@ Three microcontrollers were used along with peripheral hardware elements to impl
 2. When the Desk Pi setup is complete, connect the mbed to a USB port on the pi via the mini USB to micro USB cable. This will enable pi to mbed serial communication.
 
 **Desk Pi**:
-1. 
-2.
+1. Power on the Desk Pi through a 5V power source.
+2. Connect the Pi to the mbed via USB serial.
 
 **Plant Pi**:
-1.
-2.
+1. Connect the analog soil moisture sensor's output to the input A0 of the ADC (ADS1115)
+2. 
 
 ### Software Setup
 **Mbed**:
@@ -68,8 +68,9 @@ Three microcontrollers were used along with peripheral hardware elements to impl
     2. Add the line `sudo sh /home/[user]/[location of files]/startup.h &` before `exit 0`.
 
 **Plant Pi**:
-1. 
-2. 
+1. Install libraries for bluetooth and Pi GPIO, if not already installed.
+2. Compile the C code using the command `gcc plant_module.c -o plant_module.o -Wall -lbluetooth -lpigpio`
+3. Once compiled to an executable, edit `/etc/rc.local` to include a command to run plant_module.o, making sure to use an absolute path (such as `/home/pichu/ece4180-project/plant_pi/plant_module.o`).
 
 
 
