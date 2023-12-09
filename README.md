@@ -52,7 +52,9 @@ Three microcontrollers were used along with peripheral hardware elements to impl
 
 **Plant Pi**:
 1. Connect the analog soil moisture sensor's output to the input A0 of the ADC (ADS1115)
-2. 
+2. Ground the ADDR input of the ADS1115, which in turns sets the address to always A0.
+3. Connect both the soil moisture sensor and the ADC to 3.3V power and ground.
+4. Connect the SCL and SDA to the respective pins on the Plant Pi.
 
 ### Software Setup
 **Mbed**:
