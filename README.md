@@ -6,7 +6,8 @@ Wiki: https://github.com/amwnag/ece4180-project/wiki
 ## Overview
 **Team Members**: Amanda Wang, Devaughn Menezes, Eileen Liu, Sophia Griffith
 
-[insert photo of project here]
+![Picture](https://github.com/amwnag/ece4180-project/assets/86573349/1ef2064d-2348-4ed4-bd84-321e0e9dcc0f)
+
 
 This project aims to create an interactive desk toy that remotely monitors soil conditions of a plant nearby. The LCD screen displays information about soil moisture, connectivity, and audio levels. If the moisture levels are below a specific threshold, a frown is shown and an alarm sounds every few seconds. The volume of this alarm is controlled through an input dial on the desk buddy.
 <br/><br/> 
