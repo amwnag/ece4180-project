@@ -1,0 +1,63 @@
+<mxfile host="app.diagrams.net" modified="2023-12-06T00:09:32.494Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="rkK7CXyVcUJvuCDtTLLe" version="22.1.5" type="google">
+  <diagram name="Page-1" id="IAvR7SCOR-0pfmvO4VQQ">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="CAhOLh-6jD5Jb8sHDxQh-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="CAhOLh-6jD5Jb8sHDxQh-1" target="CAhOLh-6jD5Jb8sHDxQh-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CAhOLh-6jD5Jb8sHDxQh-1" value="Raspberry Pi Zero W (Desk Pi)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="280" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="CAhOLh-6jD5Jb8sHDxQh-2" value="Raspberry Pi Zero W (Plant Pi)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="280" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="CAhOLh-6jD5Jb8sHDxQh-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="CAhOLh-6jD5Jb8sHDxQh-3" target="CAhOLh-6jD5Jb8sHDxQh-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CAhOLh-6jD5Jb8sHDxQh-3" value="Moisture Sensor" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="90" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="CAhOLh-6jD5Jb8sHDxQh-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="CAhOLh-6jD5Jb8sHDxQh-5" target="CAhOLh-6jD5Jb8sHDxQh-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="225" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CAhOLh-6jD5Jb8sHDxQh-5" value="ADC" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="200" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="CAhOLh-6jD5Jb8sHDxQh-8" value="" style="endArrow=none;html=1;rounded=0;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=8;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="CAhOLh-6jD5Jb8sHDxQh-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="330" y="320" as="sourcePoint" />
+            <mxPoint x="300" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CAhOLh-6jD5Jb8sHDxQh-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="CAhOLh-6jD5Jb8sHDxQh-9" target="CAhOLh-6jD5Jb8sHDxQh-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CAhOLh-6jD5Jb8sHDxQh-9" value="Potentiometer&lt;br&gt;(Volume)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="415" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="CAhOLh-6jD5Jb8sHDxQh-12" value="uLCD Display" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="370" y="540" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="CAhOLh-6jD5Jb8sHDxQh-13" value="Speaker" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="540" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="CAhOLh-6jD5Jb8sHDxQh-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="CAhOLh-6jD5Jb8sHDxQh-16" target="CAhOLh-6jD5Jb8sHDxQh-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CAhOLh-6jD5Jb8sHDxQh-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="CAhOLh-6jD5Jb8sHDxQh-16" target="CAhOLh-6jD5Jb8sHDxQh-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CAhOLh-6jD5Jb8sHDxQh-16" value="Mbed (Desk)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="400" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="CAhOLh-6jD5Jb8sHDxQh-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="CAhOLh-6jD5Jb8sHDxQh-16" target="CAhOLh-6jD5Jb8sHDxQh-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
